@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Analysis Results | SkillTrace AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="results-page">
+
+
+<header class="site-header">
+    <div class="container nav-container">
+
+        <a href="{{ url_for('home') }}" class="brand">
+            <span class="brand-emblem">ST</span>
+            <span>
+                <strong>SkillTrace</strong>
+                <small>AI</small>
+            </span>
+        </a>
+
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('analyze') }}">Re-analyze</a>
+        </nav>
+
+        <button class="secondary-button print-button" onclick="window.print()">
+            Download / Print Report
+        </button>
+
+    </div>
+</header>
+
+
+<main>
+
+    <section class="results-hero">
+        <div class="container">
+
+            <span class="eyebrow">ANALYSIS COMPLETE</span>
+
+            <h1>
+                Your resume,
+                <span>traced.</span>
+            </h1>
+
+            <p>
+                Here is your SkillTrace AI analysis based on the resume content
+                and target information provided.
+            </p>
+
+            {% if results.target_role %}
+                <div class="target-pill">
+                    Target: <strong>{{ results.target_role }}</strong>
+                </div>
+            {% endif %}
+
+        </div>
+    </section>
+
+
+    <section class="container results-container">
+
+
+        <!-- SCORE OVERVIEW -->
+
+        <div class="score-grid">
+
+            <div class="score-main card">
+
+                <div class="score-ring">
+                    <div>
+                        <strong>{{ results.scores.ats_score|round(0)|int }}</strong>
+                        <span>/100</span>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="eyebrow">OVERALL</span>
+                    <h2>ATS-style Resume Score</h2>
+                    <p>
+                        An explainable estimate based on structure,
+                        keywords, content quality and readability.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="metric-card card">
+                <span class="metric-label">JOB MATCH</span>
+                <strong>{{ results.scores.job_match_score|round(0)|int }}%</strong>
+                <div class="progress">
+                    <span style="width: {{ results.scores.job_match_score }}%;"></span>
+                </div>
+            </div>
+
+
+            <div class="metric-card card">
+                <span class="metric-label">SKILL MATCH</span>
+                <strong>{{ results.scores.skill_match|round(0)|int }}%</strong>
+                <div class="progress">
+                    <span style="width: {{ results.scores.skill_match }}%;"></span>
+                </div>
+            </div>
+
+
+            <div class="metric-card card">
+                <span class="metric-label">KEYWORD MATCH</span>
+                <strong>{{ results.scores.keyword_match|round(0)|int }}%</strong>
+                <div class="progress">
+                    <span style="width: {{ results.scores.keyword_match }}%;"></span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- SCORE BREAKDOWN -->
+
+        <section class="result-section" id="ats-analysis">
+
+            <div class="section-heading">
+                <span class="eyebrow">ATS ANALYSIS</span>
+                <h2>What contributed to your score?</h2>
+            </div>
+
+            <div class="breakdown-grid">
+
+                {% for name, score in results.scores.breakdown.items() %}
+
+                <div class="breakdown-card card">
+
+                    <div class="breakdown-top">
+                        <span>{{ name }}</span>
+                        <strong>{{ score|round(0)|int }}</strong>
+                    </div>
+
+                    <div class="progress">
+                        <span style="width: {{ score }}%;"></span>
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- JOB MATCH -->
+
+        <section class="result-section" id="job-match">
+
+            <div class="section-heading">
+                <span class="eyebrow">JOB INTELLIGENCE</span>
+                <h2>How your profile aligns with the target.</h2>
+            </div>
+
+
+            <div class="two-column">
+
+                <div class="card result-card">
+
+                    <h3>Matching Skills</h3>
+
+                    {% if results.job_analysis.matched_skills %}
+
+                        <div class="tag-list">
+
+                            {% for skill in results.job_analysis.matched_skills %}
+                                <span class="tag positive">
+                                    {{ skill }}
+                                </span>
+                            {% endfor %}
+
+                        </div>
+
+                    {% else %}
+
+                        <p class="muted">
+                            No role-specific matching skills were detected.
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="card result-card">
+
+                    <h3>Missing Skills</h3>
+
+                    {% if results.job_analysis.missing_skills %}
+
+                        <div class="tag-list">
+
+                            {% for skill in results.job_analysis.missing_skills %}
+
+                                <span class="tag warning">
+                                    {{ skill }}
+                                </span>
+
+                            {% endfor %}
+
+                        </div>
+
+                    {% else %}
+
+                        <p class="muted">
+                            No obvious skill gaps were detected from the available role data.
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <div class="card result-card">
+
+                <h3>Keyword Analysis</h3>
+
+                <div class="keyword-columns">
+
+                    <div>
+                        <h4>Found</h4>
+
+                        <div class="tag-list">
+
+                            {% for keyword in results.job_analysis.matched_keywords[:20] %}
+
+                                <span class="tag positive">
+                                    {{ keyword }}
+                                </span>
+
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <h4>Missing / Consider</h4>
+
+                        <div class="tag-list">
+
+                            {% for keyword in results.job_analysis.missing_keywords[:20] %}
+
+                                <span class="tag warning">
+                                    {{ keyword }}
+                                </span>
+
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SKILLS -->
+
+        <section class="result-section" id="skills">
+
+            <div class="section-heading">
+                <span class="eyebrow">SKILL PROFILE</span>
+                <h2>What SkillTrace AI detected.</h2>
+            </div>
+
+
+            <div class="skill-grid">
+
+                {% for category, skills in results.detected_skills.categories.items() %}
+
+                    {% if skills %}
+
+                    <div class="card skill-category">
+
+                        <h3>{{ category }}</h3>
+
+                        <div class="tag-list">
+
+                            {% for skill in skills %}
+
+                                <span class="tag">
+                                    {{ skill }}
+                                </span>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- SKILL GAPS -->
+
+        <section class="result-section" id="skill-gaps">
+
+            <div class="section-heading">
+                <span class="eyebrow">SKILL GAP ROADMAP</span>
+                <h2>Areas to explore next.</h2>
+            </div>
+
+
+            {% if results.recommendations.skill_gaps %}
+
+                <div class="roadmap">
+
+                    {% for gap in results.recommendations.skill_gaps %}
+
+                    <div class="roadmap-item card">
+
+                        <div class="priority">
+                            {{ gap.priority }}
+                        </div>
+
+                        <div>
+                            <h3>{{ gap.skill }}</h3>
+
+                            <p>
+                                <strong>Why:</strong>
+                                {{ gap.why }}
+                            </p>
+
+                            <p>
+                                <strong>Learning direction:</strong>
+                                {{ gap.learning_direction }}
+                            </p>
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="empty-state card">
+                    No major skill gaps were identified from the available target information.
+                </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- RESUME REVIEW -->
+
+        <section class="result-section" id="resume-review">
+
+            <div class="section-heading">
+                <span class="eyebrow">RESUME AUDIT</span>
+                <h2>Section-by-section review.</h2>
+            </div>
+
+
+            <div class="section-score-grid">
+
+                {% for section, score in results.scores.section_scores.items() %}
+
+                <div class="section-score card">
+
+                    <div>
+                        <h3>{{ section }}</h3>
+
+                        {% if score > 0 %}
+                            <span class="status detected">Detected</span>
+                        {% else %}
+                            <span class="status missing">Not detected</span>
+                        {% endif %}
+                    </div>
+
+                    <strong>{{ score|round(0)|int }}</strong>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- STRENGTHS -->
+
+        <section class="result-section">
+
+            <div class="section-heading">
+                <span class="eyebrow">STRENGTHS</span>
+                <h2>What is already working.</h2>
+            </div>
+
+            <div class="insight-list">
+
+                {% for item in results.recommendations.strengths %}
+
+                <div class="insight positive-insight card">
+                    <span>✓</span>
+                    <p>{{ item }}</p>
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- CRITICAL ISSUES -->
+
+        <section class="result-section">
+
+            <div class="section-heading">
+                <span class="eyebrow">CRITICAL ISSUES</span>
+                <h2>What deserves attention.</h2>
+            </div>
+
+
+            {% if results.recommendations.critical_issues %}
+
+                <div class="insight-list">
+
+                    {% for item in results.recommendations.critical_issues %}
+
+                    <div class="insight warning-insight card">
+                        <span>!</span>
+                        <p>{{ item }}</p>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="empty-state card">
+                    No critical issues were detected by the current analysis.
+                </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- IMPROVEMENTS -->
+
+        <section class="result-section" id="improvements">
+
+            <div class="section-heading">
+                <span class="eyebrow">IMPROVEMENT PLAN</span>
+                <h2>Practical ways to strengthen your resume.</h2>
+            </div>
+
+
+            <div class="improvement-grid">
+
+                {% for item in results.recommendations.improvements %}
+
+                <article class="improvement-card card">
+
+                    <span class="improvement-number">
+                        {{"%02d"|format(loop.index) }}
+                    </span>
+
+                    <h3>{{ item.title }}</h3>
+
+                    <div class="improvement-block">
+                        <strong>Problem detected</strong>
+                        <p>{{ item.problem }}</p>
+                    </div>
+
+                    <div class="improvement-block">
+                        <strong>Why it matters</strong>
+                        <p>{{ item.why }}</p>
+                    </div>
+
+                    <div class="improvement-block">
+                        <strong>How to improve</strong>
+                        <p>{{ item.action }}</p>
+                    </div>
+
+                    <div class="example-box">
+                        <strong>Example</strong>
+                        <p>{{ item.example }}</p>
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- FINAL CTA -->
+
+        <section class="final-cta">
+
+            <div>
+
+                <span class="eyebrow">NEXT STEP</span>
+
+                <h2>
+                    Ready to improve your resume?
+                </h2>
+
+                <p>
+                    Make your changes and run the analysis again to compare your results.
+                </p>
+
+            </div>
+
+            <a href="{{ url_for('analyze') }}" class="primary-button">
+                Re-analyze Resume →
+            </a>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div>
+            <strong>SkillTrace AI</strong>
+            <p>Resume intelligence for smarter career preparation.</p>
+        </div>
+
+        <span>© 2026 SkillTrace AI</span>
+    </div>
+</footer>
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

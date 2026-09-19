@@ -1,0 +1,204 @@
+{
+  "data analyst": {
+    "description": "Analyze data, create reports and dashboards, work with SQL and spreadsheets, and communicate insights.",
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Pandas",
+      "Data Analysis",
+      "Data Visualization",
+      "Statistics",
+      "Power BI",
+      "Tableau"
+    ]
+  },
+  "data scientist": {
+    "description": "Use statistics, programming, data analysis and machine learning to solve data-driven problems.",
+    "skills": [
+      "Python",
+      "SQL",
+      "Pandas",
+      "NumPy",
+      "Statistics",
+      "Machine Learning",
+      "Scikit-Learn",
+      "Data Visualization"
+    ]
+  },
+  "machine learning engineer": {
+    "description": "Build, evaluate and deploy machine learning systems and data-driven applications.",
+    "skills": [
+      "Python",
+      "Machine Learning",
+      "Deep Learning",
+      "Scikit-Learn",
+      "TensorFlow",
+      "PyTorch",
+      "SQL",
+      "Git",
+      "Docker"
+    ]
+  },
+  "ai engineer": {
+    "description": "Develop AI-powered applications using machine learning, natural language processing and intelligent systems.",
+    "skills": [
+      "Python",
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Deep Learning",
+      "NLP",
+      "TensorFlow",
+      "PyTorch",
+      "Git"
+    ]
+  },
+  "software developer": {
+    "description": "Design, build, test and maintain software applications using programming languages and development tools.",
+    "skills": [
+      "Python",
+      "Java",
+      "JavaScript",
+      "Git",
+      "GitHub",
+      "SQL",
+      "REST API",
+      "Problem Solving"
+    ]
+  },
+  "frontend developer": {
+    "description": "Build responsive and interactive user interfaces for web applications.",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Git",
+      "GitHub",
+      "Responsive Design"
+    ]
+  },
+  "backend developer": {
+    "description": "Build server-side applications, APIs, databases and backend services.",
+    "skills": [
+      "Python",
+      "Java",
+      "Node.js",
+      "Flask",
+      "Django",
+      "SQL",
+      "REST API",
+      "Git",
+      "Docker"
+    ]
+  },
+  "full stack developer": {
+    "description": "Develop complete web applications across frontend, backend, databases and APIs.",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Node.js",
+      "Python",
+      "SQL",
+      "REST API",
+      "Git"
+    ]
+  },
+  "python developer": {
+    "description": "Develop software applications and backend systems using Python and related technologies.",
+    "skills": [
+      "Python",
+      "Flask",
+      "Django",
+      "SQL",
+      "REST API",
+      "Git",
+      "GitHub",
+      "Problem Solving"
+    ]
+  },
+  "cloud engineer": {
+    "description": "Design and maintain cloud infrastructure, deployments and scalable systems.",
+    "skills": [
+      "AWS",
+      "Azure",
+      "Google Cloud",
+      "Docker",
+      "Kubernetes",
+      "Linux",
+      "Git",
+      "CI/CD"
+    ]
+  },
+  "devops engineer": {
+    "description": "Automate software delivery, infrastructure management, deployments and monitoring.",
+    "skills": [
+      "Docker",
+      "Kubernetes",
+      "Linux",
+      "Git",
+      "GitHub",
+      "CI/CD",
+      "AWS",
+      "Azure"
+    ]
+  },
+  "database administrator": {
+    "description": "Manage database systems, performance, security, backups and data availability.",
+    "skills": [
+      "SQL",
+      "MySQL",
+      "PostgreSQL",
+      "Oracle",
+      "Database",
+      "Linux"
+    ]
+  },
+  "business analyst": {
+    "description": "Analyze business requirements, processes and data to support organizational decisions.",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Data Analysis",
+      "Power BI",
+      "Communication",
+      "Problem Solving",
+      "Presentation"
+    ]
+  },
+  "cybersecurity analyst": {
+    "description": "Monitor systems, identify security risks and support information security operations.",
+    "skills": [
+      "Linux",
+      "Python",
+      "Networking",
+      "Cybersecurity",
+      "Problem Solving",
+      "Critical Thinking"
+    ]
+  },
+  "ui ux designer": {
+    "description": "Design user interfaces and experiences using research, visual design and prototyping.",
+    "skills": [
+      "Figma",
+      "UI Design",
+      "UX Design",
+      "Prototyping",
+      "Communication",
+      "Creativity"
+    ]
+  },
+  "product manager": {
+    "description": "Coordinate product strategy, requirements, user needs and cross-functional development.",
+    "skills": [
+      "Communication",
+      "Leadership",
+      "Problem Solving",
+      "Analytics",
+      "Presentation",
+      "Collaboration"
+    ]
+  }
+}

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Analyze Resume | SkillTrace AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container nav-container">
+
+        <a href="{{ url_for('home') }}" class="brand">
+            <span class="brand-emblem">ST</span>
+            <span>
+                <strong>SkillTrace</strong>
+                <small>AI</small>
+            </span>
+        </a>
+
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('home') }}#how-it-works">How It Works</a>
+            <a href="{{ url_for('home') }}#about">About</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<main class="workspace">
+
+    <div class="container">
+
+        <div class="workspace-heading">
+            <span class="eyebrow">ANALYSIS WORKSPACE</span>
+
+            <h1>
+                Let's trace your
+                <span>career profile.</span>
+            </h1>
+
+            <p>
+                Upload your resume and optionally provide a target role or
+                job description for a more focused analysis.
+            </p>
+        </div>
+
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+
+        <form
+            action="{{ url_for('analyze') }}"
+            method="POST"
+            enctype="multipart/form-data"
+            class="analysis-form"
+            id="analysisForm"
+        >
+
+            <section class="form-card">
+
+                <div class="form-card-heading">
+                    <div>
+                        <span class="step-badge">01</span>
+                        <div>
+                            <h2>Your Resume</h2>
+                            <p>Upload a document or paste your resume text.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <label class="upload-zone" id="uploadZone">
+
+                    <input
+                        type="file"
+                        name="resume_file"
+                        id="resumeFile"
+                        accept=".pdf,.docx,.txt"
+                        hidden
+                    >
+
+                    <div class="upload-icon">↑</div>
+
+                    <h3>Drop your resume here</h3>
+
+                    <p>
+                        or <strong>click to browse</strong>
+                    </p>
+
+                    <small>
+                        Supported: PDF, DOCX, TXT
+                    </small>
+
+                    <div id="fileName" class="file-name"></div>
+
+                </label>
+
+
+                <div class="or-divider">
+                    <span>OR PASTE RESUME TEXT</span>
+                </div>
+
+
+                <textarea
+                    name="resume_text"
+                    id="resumeText"
+                    class="large-textarea"
+                    placeholder="Paste your complete resume text here..."
+                ></textarea>
+
+            </section>
+
+
+            <section class="form-card">
+
+                <div class="form-card-heading">
+                    <div>
+                        <span class="step-badge">02</span>
+                        <div>
+                            <h2>Target Role</h2>
+                            <p>Choose a role or type your own.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <label class="field-label">
+                    Target Job Role
+                </label>
+
+                <input
+                    type="text"
+                    name="target_role"
+                    id="targetRole"
+                    class="text-input"
+                    list="roleSuggestions"
+                    placeholder="Example: Data Analyst"
+                >
+
+                <datalist id="roleSuggestions">
+                    <option value="Data Analyst">
+                    <option value="Data Scientist">
+                    <option value="Machine Learning Engineer">
+                    <option value="AI Engineer">
+                    <option value="Software Developer">
+                    <option value="Frontend Developer">
+                    <option value="Backend Developer">
+                    <option value="Full Stack Developer">
+                    <option value="Python Developer">
+                    <option value="Cloud Engineer">
+                    <option value="DevOps Engineer">
+                    <option value="Business Analyst">
+                    <option value="Cybersecurity Analyst">
+                    <option value="UI UX Designer">
+                    <option value="Product Manager">
+                </datalist>
+
+
+                <div class="or-divider">
+                    <span>OR PASTE JOB DESCRIPTION</span>
+                </div>
+
+
+                <label class="field-label">
+                    Job Description
+                </label>
+
+                <textarea
+                    name="job_description"
+                    id="jobDescription"
+                    class="large-textarea"
+                    placeholder="Paste the job description here if you want a detailed job-specific comparison..."
+                ></textarea>
+
+            </section>
+
+
+            <section class="privacy-note">
+
+                <div class="privacy-icon">◆</div>
+
+                <div>
+                    <strong>Privacy-first processing</strong>
+
+                    <p>
+                        Uploaded resumes are processed temporarily for analysis.
+                        This demo does not permanently store your uploaded resume.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <button
+                type="submit"
+                class="primary-button analyze-button"
+                id="analyzeButton"
+            >
+                Analyze My Resume →
+            </button>
+
+        </form>
+
+    </div>
+
+</main>
+
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div>
+            <strong>SkillTrace AI</strong>
+            <p>Resume intelligence for smarter career preparation.</p>
+        </div>
+
+        <span>© 2026 SkillTrace AI</span>
+    </div>
+</footer>
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

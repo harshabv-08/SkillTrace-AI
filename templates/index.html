@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillTrace AI | Resume Intelligence</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container nav-container">
+
+        <a href="{{ url_for('home') }}" class="brand">
+            <span class="brand-emblem">ST</span>
+            <span>
+                <strong>SkillTrace</strong>
+                <small>AI</small>
+            </span>
+        </a>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <a href="{{ url_for('analyze') }}" class="nav-button">
+            Analyze Resume
+        </a>
+
+    </div>
+</header>
+
+
+<main id="home">
+
+    <section class="hero">
+        <div class="container hero-grid">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    RESUME INTELLIGENCE PLATFORM
+                </div>
+
+                <h1>
+                    Understand your resume.
+                    <span>Strengthen your career.</span>
+                </h1>
+
+                <p class="hero-text">
+                    SkillTrace AI analyzes your resume, identifies your skills,
+                    compares your profile with a target role, detects gaps,
+                    and gives practical improvement recommendations.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="{{ url_for('analyze') }}" class="primary-button">
+                        Analyze My Resume →
+                    </a>
+
+                    <a href="#how-it-works" class="secondary-button">
+                        See How It Works
+                    </a>
+                </div>
+
+                <div class="trust-line">
+                    <span>✓ PDF & DOCX</span>
+                    <span>✓ Skill Analysis</span>
+                    <span>✓ Job Matching</span>
+                    <span>✓ ATS-style Estimate</span>
+                </div>
+
+            </div>
+
+
+            <div class="hero-card">
+
+                <div class="card-label">
+                    SAMPLE ANALYSIS
+                </div>
+
+                <div class="mini-score">
+                    <div class="score-circle">
+                        <span>82</span>
+                        <small>/100</small>
+                    </div>
+
+                    <div>
+                        <h3>Resume Strength</h3>
+                        <p>ATS-style estimated score</p>
+                    </div>
+                </div>
+
+                <div class="mini-row">
+                    <span>Job Match</span>
+                    <strong>76%</strong>
+                </div>
+
+                <div class="progress">
+                    <span style="width: 76%;"></span>
+                </div>
+
+                <div class="mini-row">
+                    <span>Skill Match</span>
+                    <strong>84%</strong>
+                </div>
+
+                <div class="progress">
+                    <span style="width: 84%;"></span>
+                </div>
+
+                <div class="mini-row">
+                    <span>Keywords</span>
+                    <strong>71%</strong>
+                </div>
+
+                <div class="progress">
+                    <span style="width: 71%;"></span>
+                </div>
+
+                <div class="card-note">
+                    <strong>Insight</strong>
+                    <p>
+                        Add more role-specific keywords and measurable achievements.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="capabilities">
+        <div class="container">
+
+            <div class="section-heading">
+                <span class="eyebrow">WHAT IT ANALYZES</span>
+                <h2>One resume. A complete career audit.</h2>
+            </div>
+
+            <div class="feature-grid">
+
+                <article class="feature-card">
+                    <div class="feature-number">01</div>
+                    <h3>ATS-style Analysis</h3>
+                    <p>
+                        Review structure, keywords, content quality and readability
+                        using an explainable scoring model.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-number">02</div>
+                    <h3>Skill Detection</h3>
+                    <p>
+                        Identify technical skills, tools, technologies and soft skills
+                        present in your resume.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-number">03</div>
+                    <h3>Job Intelligence</h3>
+                    <p>
+                        Compare your resume against a target role or paste an actual
+                        job description.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-number">04</div>
+                    <h3>Skill Gap Roadmap</h3>
+                    <p>
+                        Discover missing skills and understand which areas deserve
+                        attention for your target role.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section id="how-it-works" class="how-section">
+        <div class="container">
+
+            <div class="section-heading centered">
+                <span class="eyebrow">HOW IT WORKS</span>
+                <h2>From resume to actionable insight.</h2>
+            </div>
+
+            <div class="steps">
+
+                <div class="step">
+                    <span>01</span>
+                    <h3>Upload</h3>
+                    <p>Upload a PDF or DOCX, or paste your resume text.</p>
+                </div>
+
+                <div class="step">
+                    <span>02</span>
+                    <h3>Target</h3>
+                    <p>Select a role or paste a real job description.</p>
+                </div>
+
+                <div class="step">
+                    <span>03</span>
+                    <h3>Analyze</h3>
+                    <p>SkillTrace AI evaluates structure, skills, keywords and relevance.</p>
+                </div>
+
+                <div class="step">
+                    <span>04</span>
+                    <h3>Improve</h3>
+                    <p>Use the findings to strengthen your resume strategically.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section id="about" class="about-section">
+        <div class="container about-box">
+
+            <div>
+                <span class="eyebrow">ABOUT SKILLTRACE AI</span>
+                <h2>Career analysis built around evidence.</h2>
+            </div>
+
+            <p>
+                SkillTrace AI combines resume text extraction, skill detection,
+                keyword analysis and TF-IDF based text similarity to produce
+                an explainable resume assessment. The score is an
+                <strong>ATS-style estimate</strong>, not a score from any
+                particular employer's applicant tracking system.
+            </p>
+
+        </div>
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div>
+            <strong>SkillTrace AI</strong>
+            <p>Resume intelligence for smarter career preparation.</p>
+        </div>
+
+        <span>© 2026 SkillTrace AI</span>
+    </div>
+</footer>
+
+</body>
+</html>
