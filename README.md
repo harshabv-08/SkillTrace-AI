@@ -1,9 +1,7 @@
 # SkillTrace AI
-
 SkillTrace AI is an AI-powered resume analyzer that helps users understand how well their resume matches a target job.
 
 ## Features
-
 - ATS-style estimated score
 - Job Match Score
 - Skill Match Analysis
@@ -18,7 +16,6 @@ SkillTrace AI is an AI-powered resume analyzer that helps users understand how w
 - Resume Re-analysis
 
 ## How It Works
-
 1. Upload your resume or paste your resume text.
 2. Enter your target job role or paste a job description.
 3. SkillTrace AI analyzes your resume.
@@ -30,7 +27,6 @@ SkillTrace AI is an AI-powered resume analyzer that helps users understand how w
 9. Generate and download the final report.
 
 ## Technologies Used
-
 - HTML
 - CSS
 - JavaScript
@@ -43,7 +39,6 @@ SkillTrace AI is an AI-powered resume analyzer that helps users understand how w
 - ReportLab
 
 ## Project Structure
-
 SkillTrace-AI/
 ├── analyzer/
 ├── data/
@@ -54,28 +49,8 @@ SkillTrace-AI/
 ├── app.py
 └── requirements.txt
 
-## Installation
-
-Clone the repository:
-
-git clone https://github.com/YOUR-USERNAME/SkillTrace-AI.git
-
-Open the project folder and install the required packages:
-
-pip install -r requirements.txt
-
-Run the application:
-
-python app.py
-
-Open the application in your browser:
-
-http://127.0.0.1:5000
-
 ## Project Goal
-
 SkillTrace AI helps users understand their resume's job readiness, identify skill gaps, and improve their resume according to their target job.
 
 ## Author
-
 Harsha
